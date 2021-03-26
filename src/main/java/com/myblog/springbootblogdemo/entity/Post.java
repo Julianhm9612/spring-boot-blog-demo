@@ -7,11 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "post")
+// @Where(clause = "user_id = 1")
+@NamedQueries({ @NamedQuery(name = "Post.getByUserId", query = "select p from Post p where user.id = :id") })
 public class Post {
 
     @Id
@@ -21,13 +30,20 @@ public class Post {
     private BigInteger id;
 
     @Column(name = "title", nullable = false, length = 200)
+    @NotNull(message = "El campo title es requerido")
     private String title;
 
     @Column(name = "body", nullable = false, length = 1000)
+    @NotNull(message = "El campo body es requerido")
     private String body;
 
-    @Column(name = "user_id", nullable = false)
-    private BigInteger userId;
+    // @Column(name = "user_id", nullable = false)
+    // private BigInteger userId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @NotNull(message = "El campo user es requerido")
+    private User user;
 
     public BigInteger getId() {
         return id;
@@ -53,12 +69,20 @@ public class Post {
         this.body = body;
     }
 
-    public BigInteger getUserId() {
-        return userId;
+    // public BigInteger getUserId() {
+    // return userId;
+    // }
+
+    // public void setUserId(BigInteger userId) {
+    // this.userId = userId;
+    // }
+
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(BigInteger userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }
