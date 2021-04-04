@@ -43,7 +43,7 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "user_id")
     @NotNull(message = "El campo user es requerido")
-    private User user;
+    private UserEntity user;
 
     public BigInteger getId() {
         return id;
@@ -77,11 +77,11 @@ public class Post {
     // this.userId = userId;
     // }
 
-    public User getUser() {
+    public UserEntity getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserEntity user) {
         this.user = user;
     }
 
