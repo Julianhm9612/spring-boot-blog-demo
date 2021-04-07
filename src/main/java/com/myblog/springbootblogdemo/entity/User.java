@@ -11,7 +11,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_app")
+@Table(name = "user", schema = "public")
 public class User {
 
     @Id
