@@ -13,7 +13,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests().antMatchers("/auth/**", "/v2/api-docs/**", "/v3/api-docs/**", "/swagger-ui/**",
-                        "/swagger-resources/**")
+                        "/swagger-resources/**", "/actuator/**")
                 .permitAll().anyRequest().authenticated();
     }
 }

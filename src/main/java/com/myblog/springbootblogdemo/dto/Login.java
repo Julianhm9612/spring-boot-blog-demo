@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class Login {
 
-    @ApiModelProperty(example = "example")
+    @ApiModelProperty(example = "example", notes = "Nombre del usuario al momento de registrarse")
     @NotNull(message = "El campo username es requerido")
     private String username;
 
